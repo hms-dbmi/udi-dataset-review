@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import UDIVis from 'src/components/UDIVis.vue';
 import { ref, computed } from 'vue';
-import { useEditorStore } from 'src/stores/EditorStore';
-const editorStore = useEditorStore();
 import { useTrainingStore } from 'src/stores/TrainingStore';
 import { isEqual } from 'lodash';
 const trainingStore = useTrainingStore();
@@ -209,12 +206,6 @@ function prettyPrintJson(json?: string): string {
       <q-btn @click="next" flat label="Next" />
       <q-btn @click="prevTemplate" flat label="Prev Template" />
       <q-btn @click="nextTemplate" flat label="Next Template" />
-      <q-btn
-        v-if="validSpec"
-        :to="editorStore.getUrlWithSpec(spec)"
-        flat
-        label="Open in Editor"
-      />
     </q-toolbar>
     <div class="q-mt-lg q-ml-lg q-mr-lg">
       <template v-if="currrentExample">

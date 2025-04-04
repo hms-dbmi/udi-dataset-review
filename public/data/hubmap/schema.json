@@ -1,0 +1,1384 @@
+[
+    {
+        "name": "dataset",
+        "folder": "hubmap",
+        "url": "./data/hubmap/dataset.csv",
+        "row_count": 3235,
+        "column_count": 176,
+        "columns": [
+            {
+                "name": "uuid",
+                "data_type": "nominal",
+                "cardinality": 3235
+            },
+            {
+                "name": "hubmap_id",
+                "data_type": "nominal",
+                "cardinality": 3235
+            },
+            {
+                "name": "ablation_distance_between_shots_x_units",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "ablation_distance_between_shots_x_value",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "ablation_distance_between_shots_y_units",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "ablation_distance_between_shots_y_value",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "ablation_frequency_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "ablation_frequency_value",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "acquisition_id",
+                "data_type": "nominal",
+                "cardinality": 218
+            },
+            {
+                "name": "acquisition_instrument_model",
+                "data_type": "nominal",
+                "cardinality": 47
+            },
+            {
+                "name": "acquisition_instrument_vendor",
+                "data_type": "nominal",
+                "cardinality": 19
+            },
+            {
+                "name": "analyte_class",
+                "data_type": "nominal",
+                "cardinality": 10
+            },
+            {
+                "name": "area_normalized_ion_dose_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "area_normalized_ion_dose_value",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "assay_category",
+                "data_type": "nominal",
+                "cardinality": 5
+            },
+            {
+                "name": "assay_type",
+                "data_type": "nominal",
+                "cardinality": 37
+            },
+            {
+                "name": "bead_barcode_offset",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "bead_barcode_read",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "bead_barcode_size",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "bulk_atac_cell_isolation_protocols_io_doi",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "bulk_rna_isolation_protocols_io_doi",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "bulk_rna_isolation_quality_metric_value",
+                "data_type": "quantitative",
+                "cardinality": 7
+            },
+            {
+                "name": "bulk_rna_yield_units_per_tissue_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "bulk_rna_yield_value",
+                "data_type": "quantitative",
+                "cardinality": 9
+            },
+            {
+                "name": "bulk_transposition_input_number_nuclei",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "cell_barcode_offset",
+                "data_type": "nominal",
+                "cardinality": 6
+            },
+            {
+                "name": "cell_barcode_read",
+                "data_type": "nominal",
+                "cardinality": 19
+            },
+            {
+                "name": "cell_barcode_size",
+                "data_type": "nominal",
+                "cardinality": 6
+            },
+            {
+                "name": "created_by_user_displayname",
+                "data_type": "nominal",
+                "cardinality": 22
+            },
+            {
+                "name": "created_by_user_email",
+                "data_type": "nominal",
+                "cardinality": 24
+            },
+            {
+                "name": "created_timestamp",
+                "data_type": "quantitative",
+                "cardinality": 3234
+            },
+            {
+                "name": "data_collection_mode",
+                "data_type": "nominal",
+                "cardinality": 4
+            },
+            {
+                "name": "data_precision_bytes",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "description",
+                "data_type": "nominal",
+                "cardinality": 245
+            },
+            {
+                "name": "desi_solvent",
+                "data_type": "nominal",
+                "cardinality": 4
+            },
+            {
+                "name": "desi_solvent_flow_rate",
+                "data_type": "quantitative",
+                "cardinality": 4
+            },
+            {
+                "name": "desi_solvent_flow_rate_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "dms",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "dna_assay_input_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "dna_assay_input_value",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "donor.hubmap_id",
+                "data_type": "nominal",
+                "cardinality": 266
+            },
+            {
+                "name": "dual_count_start",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "end_datetime",
+                "data_type": "nominal",
+                "cardinality": 15
+            },
+            {
+                "name": "execution_datetime",
+                "data_type": "nominal",
+                "cardinality": 517
+            },
+            {
+                "name": "expected_cell_count",
+                "data_type": "quantitative",
+                "cardinality": 18
+            },
+            {
+                "name": "gdna_fragmentation_quality_assurance",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "group_name",
+                "data_type": "nominal",
+                "cardinality": 19
+            },
+            {
+                "name": "increment_z_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "increment_z_value",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "ion_mobility",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "is_targeted",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "is_technical_replicate",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "labeling",
+                "data_type": "nominal",
+                "cardinality": 8
+            },
+            {
+                "name": "last_modified_timestamp",
+                "data_type": "quantitative",
+                "cardinality": 3235
+            },
+            {
+                "name": "lc_column_model",
+                "data_type": "nominal",
+                "cardinality": 9
+            },
+            {
+                "name": "lc_column_vendor",
+                "data_type": "nominal",
+                "cardinality": 7
+            },
+            {
+                "name": "lc_flow_rate_unit",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "lc_flow_rate_value",
+                "data_type": "quantitative",
+                "cardinality": 7
+            },
+            {
+                "name": "lc_gradient",
+                "data_type": "nominal",
+                "cardinality": 9
+            },
+            {
+                "name": "lc_id_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "lc_id_value",
+                "data_type": "quantitative",
+                "cardinality": 4
+            },
+            {
+                "name": "lc_instrument_model",
+                "data_type": "nominal",
+                "cardinality": 10
+            },
+            {
+                "name": "lc_instrument_vendor",
+                "data_type": "nominal",
+                "cardinality": 8
+            },
+            {
+                "name": "lc_length_unit",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "lc_length_value",
+                "data_type": "quantitative",
+                "cardinality": 6
+            },
+            {
+                "name": "lc_mobile_phase_a",
+                "data_type": "nominal",
+                "cardinality": 9
+            },
+            {
+                "name": "lc_mobile_phase_b",
+                "data_type": "nominal",
+                "cardinality": 9
+            },
+            {
+                "name": "lc_resin",
+                "data_type": "nominal",
+                "cardinality": 9
+            },
+            {
+                "name": "lc_temp_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "lc_temp_value",
+                "data_type": "quantitative",
+                "cardinality": 7
+            },
+            {
+                "name": "library_adapter_sequence",
+                "data_type": "nominal",
+                "cardinality": 25
+            },
+            {
+                "name": "library_average_fragment_size",
+                "data_type": "quantitative",
+                "cardinality": 160
+            },
+            {
+                "name": "library_concentration_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "library_concentration_value",
+                "data_type": "quantitative",
+                "cardinality": 23
+            },
+            {
+                "name": "library_construction_method",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "library_construction_protocols_io_doi",
+                "data_type": "nominal",
+                "cardinality": 19
+            },
+            {
+                "name": "library_creation_date",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "library_final_yield",
+                "data_type": "quantitative",
+                "cardinality": 56
+            },
+            {
+                "name": "library_final_yield_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "library_final_yield_value",
+                "data_type": "quantitative",
+                "cardinality": 226
+            },
+            {
+                "name": "library_id",
+                "data_type": "nominal",
+                "cardinality": 402
+            },
+            {
+                "name": "library_layout",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "library_pcr_cycles",
+                "data_type": "quantitative",
+                "cardinality": 13
+            },
+            {
+                "name": "library_pcr_cycles_for_sample_index",
+                "data_type": "quantitative",
+                "cardinality": 11
+            },
+            {
+                "name": "library_preparation_kit",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "mapped_consortium",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "mapped_statusdata_access_level",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "mass_resolving_power",
+                "data_type": "quantitative",
+                "cardinality": 8
+            },
+            {
+                "name": "max_x_width_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "max_x_width_value",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "max_y_height_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "max_y_height_value",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "ms_scan_mode",
+                "data_type": "nominal",
+                "cardinality": 6
+            },
+            {
+                "name": "ms_source",
+                "data_type": "nominal",
+                "cardinality": 7
+            },
+            {
+                "name": "mz_range_high_value",
+                "data_type": "quantitative",
+                "cardinality": 8
+            },
+            {
+                "name": "mz_range_low_value",
+                "data_type": "quantitative",
+                "cardinality": 11
+            },
+            {
+                "name": "mz_resolving_power",
+                "data_type": "quantitative",
+                "cardinality": 7
+            },
+            {
+                "name": "number_of_antibodies",
+                "data_type": "quantitative",
+                "cardinality": 8
+            },
+            {
+                "name": "number_of_barcode_probes",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "number_of_barcode_regions_per_barcode_probe",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "number_of_channels",
+                "data_type": "quantitative",
+                "cardinality": 7
+            },
+            {
+                "name": "number_of_cycles",
+                "data_type": "quantitative",
+                "cardinality": 11
+            },
+            {
+                "name": "number_of_imaging_rounds",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "number_of_pseudocolors_per_channel",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "number_of_readout_probes_per_channel",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "number_of_sections",
+                "data_type": "quantitative",
+                "cardinality": 4
+            },
+            {
+                "name": "operator",
+                "data_type": "nominal",
+                "cardinality": 45
+            },
+            {
+                "name": "operator_email",
+                "data_type": "nominal",
+                "cardinality": 43
+            },
+            {
+                "name": "origin_samples_unique_mapped_organs",
+                "data_type": "nominal",
+                "cardinality": 25
+            },
+            {
+                "name": "overall_protocols_io_doi",
+                "data_type": "nominal",
+                "cardinality": 16
+            },
+            {
+                "name": "pi",
+                "data_type": "nominal",
+                "cardinality": 26
+            },
+            {
+                "name": "pi_email",
+                "data_type": "nominal",
+                "cardinality": 23
+            },
+            {
+                "name": "pixel_dwell_time_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "pixel_dwell_time_value",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "pixel_size_x_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "pixel_size_x_value",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "pixel_size_y_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "pixel_size_y_value",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "polarity",
+                "data_type": "nominal",
+                "cardinality": 9
+            },
+            {
+                "name": "preparation_instrument_model",
+                "data_type": "nominal",
+                "cardinality": 9
+            },
+            {
+                "name": "preparation_instrument_vendor",
+                "data_type": "nominal",
+                "cardinality": 7
+            },
+            {
+                "name": "preparation_maldi_matrix",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "preparation_type",
+                "data_type": "nominal",
+                "cardinality": 4
+            },
+            {
+                "name": "primary_ion",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "primary_ion_current_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "primary_ion_current_value",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "processing_protocols_io_doi",
+                "data_type": "nominal",
+                "cardinality": 10
+            },
+            {
+                "name": "processing_search",
+                "data_type": "nominal",
+                "cardinality": 9
+            },
+            {
+                "name": "protocols_io_doi",
+                "data_type": "nominal",
+                "cardinality": 45
+            },
+            {
+                "name": "published_timestamp",
+                "data_type": "quantitative",
+                "cardinality": 3216
+            },
+            {
+                "name": "puck_id",
+                "data_type": "nominal",
+                "cardinality": 43
+            },
+            {
+                "name": "range_z_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "range_z_value",
+                "data_type": "quantitative",
+                "cardinality": 4
+            },
+            {
+                "name": "reagent_prep_protocols_io_doi",
+                "data_type": "nominal",
+                "cardinality": 8
+            },
+            {
+                "name": "resolution_x_unit",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "resolution_x_value",
+                "data_type": "quantitative",
+                "cardinality": 21
+            },
+            {
+                "name": "resolution_y_unit",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "resolution_y_value",
+                "data_type": "quantitative",
+                "cardinality": 21
+            },
+            {
+                "name": "resolution_z_unit",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "resolution_z_value",
+                "data_type": "quantitative",
+                "cardinality": 6
+            },
+            {
+                "name": "rnaseq_assay_input",
+                "data_type": "quantitative",
+                "cardinality": 120
+            },
+            {
+                "name": "rnaseq_assay_input_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "rnaseq_assay_input_value",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "rnaseq_assay_method",
+                "data_type": "nominal",
+                "cardinality": 24
+            },
+            {
+                "name": "roi_description",
+                "data_type": "nominal",
+                "cardinality": 18
+            },
+            {
+                "name": "roi_id",
+                "data_type": "quantitative",
+                "cardinality": 7
+            },
+            {
+                "name": "sample_quality_metric",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "sc_isolation_cell_number",
+                "data_type": "quantitative",
+                "cardinality": 188
+            },
+            {
+                "name": "sc_isolation_enrichment",
+                "data_type": "nominal",
+                "cardinality": 4
+            },
+            {
+                "name": "sc_isolation_entity",
+                "data_type": "nominal",
+                "cardinality": 6
+            },
+            {
+                "name": "sc_isolation_protocols_io_doi",
+                "data_type": "nominal",
+                "cardinality": 18
+            },
+            {
+                "name": "sc_isolation_quality_metric",
+                "data_type": "nominal",
+                "cardinality": 5
+            },
+            {
+                "name": "sc_isolation_tissue_dissociation",
+                "data_type": "nominal",
+                "cardinality": 8
+            },
+            {
+                "name": "section_prep_protocols_io_doi",
+                "data_type": "nominal",
+                "cardinality": 23
+            },
+            {
+                "name": "segment_data_format",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "sequencing_phix_percent",
+                "data_type": "quantitative",
+                "cardinality": 6
+            },
+            {
+                "name": "sequencing_read_format",
+                "data_type": "nominal",
+                "cardinality": 23
+            },
+            {
+                "name": "sequencing_read_percent_q30",
+                "data_type": "quantitative",
+                "cardinality": 257
+            },
+            {
+                "name": "sequencing_reagent_kit",
+                "data_type": "nominal",
+                "cardinality": 22
+            },
+            {
+                "name": "signal_type",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "source_project",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "spatial_sampling_type",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "spatial_target",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "spatial_type",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "stain",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "start_datetime",
+                "data_type": "nominal",
+                "cardinality": 15
+            },
+            {
+                "name": "status",
+                "data_type": "nominal",
+                "cardinality": 1
+            },
+            {
+                "name": "step_z_value",
+                "data_type": "quantitative",
+                "cardinality": 4
+            },
+            {
+                "name": "thumbnail_file_abs_path",
+                "data_type": "nominal",
+                "cardinality": 30
+            },
+            {
+                "name": "transposition_input",
+                "data_type": "quantitative",
+                "cardinality": 67
+            },
+            {
+                "name": "transposition_kit_number",
+                "data_type": "nominal",
+                "cardinality": 8
+            },
+            {
+                "name": "transposition_method",
+                "data_type": "nominal",
+                "cardinality": 6
+            },
+            {
+                "name": "transposition_transposase_source",
+                "data_type": "nominal",
+                "cardinality": 6
+            },
+            {
+                "name": "umi_offset",
+                "data_type": "quantitative",
+                "cardinality": 2
+            },
+            {
+                "name": "umi_read",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "umi_size",
+                "data_type": "quantitative",
+                "cardinality": 2
+            }
+        ]
+    },
+    {
+        "name": "sample",
+        "folder": "hubmap",
+        "url": "./data/hubmap/sample.csv",
+        "row_count": 2354,
+        "column_count": 55,
+        "columns": [
+            {
+                "name": "uuid",
+                "data_type": "nominal",
+                "cardinality": 2354
+            },
+            {
+                "name": "hubmap_id",
+                "data_type": "nominal",
+                "cardinality": 2354
+            },
+            {
+                "name": "PPID",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "Preservation_condition",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "Preservation_media",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "cold_ischemia_time_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "cold_ischemia_time_value",
+                "data_type": "quantitative",
+                "cardinality": 78
+            },
+            {
+                "name": "created_by_user_displayname",
+                "data_type": "nominal",
+                "cardinality": 30
+            },
+            {
+                "name": "created_by_user_email",
+                "data_type": "nominal",
+                "cardinality": 33
+            },
+            {
+                "name": "created_timestamp",
+                "data_type": "quantitative",
+                "cardinality": 1819
+            },
+            {
+                "name": "donor.hubmap_id",
+                "data_type": "nominal",
+                "cardinality": 266
+            },
+            {
+                "name": "file_row",
+                "data_type": "quantitative",
+                "cardinality": 9
+            },
+            {
+                "name": "group_name",
+                "data_type": "nominal",
+                "cardinality": 16
+            },
+            {
+                "name": "health_status",
+                "data_type": "nominal",
+                "cardinality": 5
+            },
+            {
+                "name": "histological_report",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "lab_id",
+                "data_type": "nominal",
+                "cardinality": 9
+            },
+            {
+                "name": "last_modified_timestamp",
+                "data_type": "quantitative",
+                "cardinality": 1845
+            },
+            {
+                "name": "mapped_consortium",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "mapped_statusdata_access_level",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "metadata_schema_id",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "notes",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "organ_condition",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "origin_samples_unique_mapped_organs",
+                "data_type": "nominal",
+                "cardinality": 23
+            },
+            {
+                "name": "pathname",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "pathologist_report",
+                "data_type": "nominal",
+                "cardinality": 15
+            },
+            {
+                "name": "pathology_distance_unit",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "pathology_distance_value",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "perfusion_solution",
+                "data_type": "nominal",
+                "cardinality": 6
+            },
+            {
+                "name": "preparation_condition",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "preparation_medium",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "preparation_protocol_doi",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "procedure_date",
+                "data_type": "nominal",
+                "cardinality": 68
+            },
+            {
+                "name": "processing_time_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "processing_time_value",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "published_timestamp",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "quality_criteria",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "sample_category",
+                "data_type": "nominal",
+                "cardinality": 4
+            },
+            {
+                "name": "sample_id",
+                "data_type": "nominal",
+                "cardinality": 108
+            },
+            {
+                "name": "source_id",
+                "data_type": "nominal",
+                "cardinality": 4
+            },
+            {
+                "name": "source_storage_duration_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "source_storage_duration_value",
+                "data_type": "quantitative",
+                "cardinality": 4
+            },
+            {
+                "name": "specimen_preservation_temperature",
+                "data_type": "nominal",
+                "cardinality": 5
+            },
+            {
+                "name": "specimen_quality_criteria",
+                "data_type": "nominal",
+                "cardinality": 4
+            },
+            {
+                "name": "specimen_tumor_distance_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "specimen_tumor_distance_value",
+                "data_type": "quantitative",
+                "cardinality": 12
+            },
+            {
+                "name": "status",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "storage_medium",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "storage_method",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "tissue_weight_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "tissue_weight_value",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "vital_state",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "volume_unit",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "volume_value",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "warm_ischemia_time_unit",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "warm_ischemia_time_value",
+                "data_type": "nominal",
+                "cardinality": 12
+            }
+        ]
+    },
+    {
+        "name": "donor",
+        "folder": "hubmap",
+        "url": "./data/hubmap/donor.csv",
+        "row_count": 266,
+        "column_count": 40,
+        "columns": [
+            {
+                "name": "uuid",
+                "data_type": "nominal",
+                "cardinality": 266
+            },
+            {
+                "name": "hubmap_id",
+                "data_type": "nominal",
+                "cardinality": 266
+            },
+            {
+                "name": "abo_blood_group_system",
+                "data_type": "nominal",
+                "cardinality": 6
+            },
+            {
+                "name": "age_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "age_value",
+                "data_type": "quantitative",
+                "cardinality": 125
+            },
+            {
+                "name": "apolipoprotein_e_phenotype",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "body_mass_index_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "body_mass_index_value",
+                "data_type": "quantitative",
+                "cardinality": 151
+            },
+            {
+                "name": "cause_of_death",
+                "data_type": "nominal",
+                "cardinality": 9
+            },
+            {
+                "name": "created_by_user_displayname",
+                "data_type": "nominal",
+                "cardinality": 19
+            },
+            {
+                "name": "created_by_user_email",
+                "data_type": "nominal",
+                "cardinality": 21
+            },
+            {
+                "name": "created_timestamp",
+                "data_type": "quantitative",
+                "cardinality": 266
+            },
+            {
+                "name": "death_event",
+                "data_type": "nominal",
+                "cardinality": 6
+            },
+            {
+                "name": "egfr_ckd_epi_2021__unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "egfr_ckd_epi_2021__value",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "ethnicity",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "gestational_age_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "gestational_age_value",
+                "data_type": "quantitative",
+                "cardinality": 8
+            },
+            {
+                "name": "group_name",
+                "data_type": "nominal",
+                "cardinality": 15
+            },
+            {
+                "name": "height_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "height_value",
+                "data_type": "quantitative",
+                "cardinality": 52
+            },
+            {
+                "name": "kidney_donor_profile_index_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "kidney_donor_profile_index_value",
+                "data_type": "quantitative",
+                "cardinality": 26
+            },
+            {
+                "name": "last_modified_timestamp",
+                "data_type": "quantitative",
+                "cardinality": 266
+            },
+            {
+                "name": "mapped_consortium",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "mapped_statusdata_access_level",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "mechanism_of_injury",
+                "data_type": "nominal",
+                "cardinality": 12
+            },
+            {
+                "name": "medical_history",
+                "data_type": "nominal",
+                "cardinality": 55
+            },
+            {
+                "name": "other_anatomic_concept",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "pathology_note",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "published_timestamp",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "race",
+                "data_type": "nominal",
+                "cardinality": 7
+            },
+            {
+                "name": "rh_blood_group",
+                "data_type": "nominal",
+                "cardinality": 3
+            },
+            {
+                "name": "serum_creatinine_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "serum_creatinine_value",
+                "data_type": "quantitative",
+                "cardinality": 3
+            },
+            {
+                "name": "sex",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "social_history",
+                "data_type": "nominal",
+                "cardinality": 20
+            },
+            {
+                "name": "status",
+                "data_type": "quantitative",
+                "cardinality": 1
+            },
+            {
+                "name": "weight_unit",
+                "data_type": "nominal",
+                "cardinality": 2
+            },
+            {
+                "name": "weight_value",
+                "data_type": "quantitative",
+                "cardinality": 110
+            }
+        ]
+    }
+]
