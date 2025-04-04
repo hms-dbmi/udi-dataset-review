@@ -96,13 +96,6 @@ const validSpec = computed(() => {
 const spec = computed(() => {
   return JSON.parse(currrentExample.value?.spec ?? '');
 });
-
-function prettyPrintJson(json?: string): string {
-  if (!json) {
-    return '';
-  }
-  return JSON.stringify(JSON.parse(json), null, 2);
-}
 </script>
 <template>
   <q-drawer v-model="trainingStore.leftDrawerOpen" bordered :width="400">
@@ -127,9 +120,14 @@ function prettyPrintJson(json?: string): string {
       </q-item>
       <q-item>
         <q-item-section>
-          <q-item-label class="code-display">{{
-            currrentExample?.constraints
-          }}</q-item-label>
+          <q-item-label>
+            <JsonViewer
+              v-if="currrentExample"
+              :value="currrentExample?.constraints ?? []"
+              expand-depth="3"
+              theme="light"
+            />
+          </q-item-label>
           <q-item-label caption>constraints</q-item-label>
         </q-item-section>
       </q-item>
@@ -139,14 +137,21 @@ function prettyPrintJson(json?: string): string {
           <q-item-label caption>dataset_schema</q-item-label>
         </q-item-section>
       </q-item>
+
       <q-item>
         <q-item-section>
-          <q-item-label class="code-display">{{
-            currrentExample?.solution
-          }}</q-item-label>
+          <q-item-label>
+            <JsonViewer
+              v-if="currrentExample"
+              :value="currrentExample?.solution ?? {}"
+              expand-depth="2"
+              theme="light"
+            />
+          </q-item-label>
           <q-item-label caption>solution</q-item-label>
         </q-item-section>
       </q-item>
+
       <q-item>
         <q-item-section>
           <q-item-label>{{ currrentExample?.query_base }}</q-item-label>
@@ -171,19 +176,29 @@ function prettyPrintJson(json?: string): string {
           <q-item-label caption>formality</q-item-label>
         </q-item-section>
       </q-item>
+
       <q-item>
         <q-item-section>
-          <q-item-label class="code-display">{{
-            prettyPrintJson(currrentExample?.spec_template)
-          }}</q-item-label>
+          <q-item-label>
+            <JsonViewer
+              :value="JSON.parse(currrentExample?.spec_template ?? '{}')"
+              expand-depth="4"
+              theme="light"
+            />
+          </q-item-label>
           <q-item-label caption>spec_template</q-item-label>
         </q-item-section>
       </q-item>
+
       <q-item>
         <q-item-section>
-          <q-item-label class="code-display">{{
-            prettyPrintJson(currrentExample?.spec)
-          }}</q-item-label>
+          <q-item-label>
+            <JsonViewer
+              :value="JSON.parse(currrentExample?.spec ?? '{}')"
+              expand-depth="4"
+              theme="light"
+            />
+          </q-item-label>
           <q-item-label caption>spec</q-item-label>
         </q-item-section>
       </q-item>
@@ -218,9 +233,8 @@ function prettyPrintJson(json?: string): string {
   </q-page>
 </template>
 
-<style scoped>
-.code-display {
-  white-space: pre-wrap;
-  font-family: monospace;
+<style lang="scss">
+.jv-code {
+  padding: 0 !important;
 }
 </style>
