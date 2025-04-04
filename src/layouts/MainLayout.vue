@@ -11,26 +11,8 @@
           @click="toggleLeftDrawer"
         /> -->
         <q-tabs shrink inline-label dense>
-          <q-route-tab
-            no-caps
-            to="/"
-            label=" Universal Discovery Interface"
-            icon="home"
-          />
-          <q-route-tab no-caps to="/Examples" label="Examples" />
-          <q-route-tab no-caps to="/Editor" label="Editor" />
-          <q-route-tab no-caps to="/Training" label="Training Data" />
+          <q-route-tab no-caps to="/" label="UDI Data Review" icon="grading" />
         </q-tabs>
-        <q-space />
-        <!-- github -->
-        <q-btn
-          flat
-          dense
-          round
-          icon="fab fa-github"
-          aria-label="GitHub"
-          href="https://github.com/hms-dbmi/udi-grammar"
-        />
       </q-toolbar>
     </q-header>
 
