@@ -288,15 +288,15 @@ const spec = computed(() => {
       </q-item>
     </q-list>
   </q-drawer>
-  <q-page class="column items-center justify-start q-ma-md">
-    <div class="q-mt-lg q-ml-lg q-mr-lg">
-      <q-card flat class="q-mb-md mw-600" v-if="currentExample">
-        <q-card-section>
+  <q-page class="column items-center justify-start q-ma-sm">
+    <div class="q-mt-none q-ml-lg q-mr-lg full-width">
+      <q-card flat class="q-mb-md" v-if="currentExample">
+        <q-card-section class="q-pa-sm q-pt-none">
           <div class="text-h6">
             {{ (currentExample.id + 1).toLocaleString() }} of
             {{ numberOfExamples.toLocaleString() }}
           </div>
-          <q-list separator>
+          <q-list separator dense>
             <q-item>
               <q-item-section avatar>
                 <q-icon color="primary" name="radio_button_unchecked" />
@@ -396,8 +396,11 @@ const spec = computed(() => {
               </q-item-section>
             </q-item>
           </q-list>
+          <q-separator></q-separator>
         </q-card-section>
       </q-card>
+    </div>
+    <div class="q-mt-lg q-ml-lg q-mr-lg">
       <template v-if="currentExample">
         <p class="text-h5">
           {{ currentExample.query }}
@@ -411,9 +414,5 @@ const spec = computed(() => {
 <style lang="scss">
 .jv-code {
   padding: 0 !important;
-}
-
-.mw-600 {
-  max-width: 600px;
 }
 </style>
