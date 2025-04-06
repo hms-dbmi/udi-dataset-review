@@ -75,6 +75,7 @@ function prev(stepType: stepType) {
 function fetchCurrentExampleTrainingData() {
   const { template, expanded, paraphrased } = currentIndex.value;
   fetchExampleTrainingData(template, expanded, paraphrased);
+  fetchParaphrasedCounts(template, expanded);
 }
 
 function fetchExampleTrainingData(
@@ -86,6 +87,19 @@ function fetchExampleTrainingData(
   window?.electron.fetchRowData(combinedId).then((data) => {
     currentExample.value = data;
   });
+}
+
+function fetchCurrentExampleParaphrasedCount() {
+  const { template, expanded } = currentIndex.value;
+  fetchParaphrasedCounts(template, expanded);
+}
+
+function fetchParaphrasedCounts(templateId: number, expandedId: number) {
+  window?.electron
+    .fetchParaphrasedCounts(templateId, expandedId)
+    .then((data) => {
+      numberOfParaphrased.value = data[0].count;
+    });
 }
 
 const currentExample = ref<TrainingData | null>(null);
@@ -117,11 +131,8 @@ onMounted(() => {
     expandedCounts.value = data;
   });
 
-  window?.electron.fetchParaphrasedCounts(0, 0).then((data) => {
-    numberOfParaphrased.value = data[0].count;
-  });
-
   fetchCurrentExampleTrainingData();
+  fetchCurrentExampleParaphrasedCount();
 });
 
 export interface TrainingData {
