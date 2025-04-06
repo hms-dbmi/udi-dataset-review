@@ -2,14 +2,15 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar class="bg-white text-primary">
-        <!-- <q-btn
+        <q-btn
           flat
           dense
           round
-          icon="menu"
+          icon="troubleshoot"
           aria-label="Menu"
-          @click="toggleLeftDrawer"
-        /> -->
+          class="q-mr-md"
+          @click="trainingStore.toggleDrawer"
+        />
         <q-tabs shrink inline-label dense>
           <q-route-tab no-caps to="/" label="UDI Data Review" icon="verified" />
         </q-tabs>
@@ -23,7 +24,6 @@
 </template>
 
 <script setup lang="ts">
-// import { ref } from 'vue';
-
-// const leftDrawerOpen = ref(true);
+import { useTrainingStore } from 'src/stores/TrainingStore';
+const trainingStore = useTrainingStore();
 </script>

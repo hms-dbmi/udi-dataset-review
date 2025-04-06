@@ -2,7 +2,6 @@ import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import os from 'os';
 import { fileURLToPath } from 'url';
-// import * as sqlite3 from 'sqlite3';
 import sqlite3 from 'sqlite3';
 import { ipcMain } from 'electron';
 
@@ -11,7 +10,6 @@ const platform = process.platform || os.platform();
 
 const currentDir = fileURLToPath(new URL('.', import.meta.url));
 const dbPath = path.join(currentDir, 'data', 'database.sqlite');
-console.log('Database Path:', dbPath);
 
 let mainWindow: BrowserWindow | undefined;
 
@@ -68,97 +66,6 @@ function connectToDatabase() {
     }
   });
 }
-
-// // Get all the data for a single row
-// ipcMain.handle('fetch-row-data', async (event, id) => {
-//   return new Promise((resolve, reject) => {
-//     if (!db) {
-//       console.error('Database not connected when fetching data');
-//       return null;
-//     }
-//     db.get('SELECT * FROM data WHERE combined_id = ?', [id], (err, row) => {
-//       if (err) {
-//         console.log(err);
-//         reject(new Error('Error fetching row'));
-//       } else {
-//         resolve(row);
-//       }
-//     });
-//   });
-// });
-
-// // Get all the data for a single row
-// const fetchRowData = 'fetch-row-data';
-// ipcMain.handle(fetchRowData, async (_event, id) => {
-//   return new Promise((resolve, reject) => {
-//     if (!db) {
-//       console.error(`Database not connected after call to ${fetchRowData}`);
-//       return null;
-//     }
-//     db.get('SELECT * FROM data WHERE combined_id = ?', [id], (err, row) => {
-//       if (err) {
-//         console.log(err);
-//         reject(new Error(`Error in ${fetchRowData}`));
-//       } else {
-//         resolve(row);
-//       }
-//     });
-//   });
-// });
-
-// // Get the number of unique expanded_id for each template_id
-// const fetchExpandedCounts = 'fetch-expanded-counts';
-// ipcMain.handle(fetchExpandedCounts, async (_event) => {
-//   return new Promise((resolve, reject) => {
-//     if (!db) {
-//       console.error(
-//         `Database not connected after call to ${fetchExpandedCounts}`,
-//       );
-//       return null;
-//     }
-//     db.all(
-//       'SELECT template_id, COUNT(DISTINCT expanded_id) AS count FROM data GROUP BY template_id',
-//       (err, rows) => {
-//         if (err) {
-//           console.log(err);
-//           reject(new Error(`Error in ${fetchExpandedCounts}`));
-//         } else {
-//           resolve(rows);
-//         }
-//       },
-//     );
-//   });
-// });
-
-// // Get the number of paraphrased coutns for a given template_id and expanded_id
-// const fetchParaphrasedCounts = 'fetch-paraphrased-counts';
-// ipcMain.handle(
-//   fetchParaphrasedCounts,
-//   async (_event, templateId, expandedId) => {
-//     return new Promise((resolve, reject) => {
-//       if (!db) {
-//         console.error(
-//           `Database not connected after call to ${fetchParaphrasedCounts}`,
-//         );
-//         return null;
-//       }
-//       db.get(
-//         'SELECT COUNT(paraphrased_id) AS paraphrased_count FROM data WHERE template_id = ? AND expanded_id = ?',
-//         [templateId, expandedId],
-//         (err, row) => {
-//           if (err) {
-//             console.log(err);
-//             reject(new Error(`Error in ${fetchParaphrasedCounts}`));
-//           } else {
-//             resolve(row);
-//           }
-//         },
-//       );
-//     });
-//   },
-// );
-
-/// refactored
 
 function handleDatabaseQuery(
   name: string,

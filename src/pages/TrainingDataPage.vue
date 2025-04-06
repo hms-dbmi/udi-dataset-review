@@ -4,8 +4,6 @@ import { useTrainingStore } from 'src/stores/TrainingStore';
 
 const trainingStore = useTrainingStore();
 
-const trainingData = ref<TrainingData[]>();
-
 const currentIndex = ref<{
   template: number;
   expanded: number;
@@ -170,16 +168,6 @@ export interface RowCount {
   count: number;
 }
 
-fetch('./data/training_data.json')
-  .then((response) => response.json())
-  .then((data) => {
-    console.log('Fetched data:', data);
-    trainingData.value = data;
-  })
-  .catch((error) => {
-    console.error('Error fetching data:', error);
-  });
-
 const validSpec = computed(() => {
   try {
     JSON.parse(currentExample.value?.spec ?? '');
@@ -301,23 +289,6 @@ const spec = computed(() => {
     </q-list>
   </q-drawer>
   <q-page class="column items-center justify-start q-ma-md">
-    <q-toolbar class="text-primary">
-      <q-btn
-        class="q-mr-lg"
-        @click="trainingStore.toggleDrawer"
-        flat
-        round
-        dense
-        icon="menu"
-      />
-      <span class="q-mr-md"
-        >{{ trainingStore.index + 1 }} / {{ trainingData?.length ?? 0 }}</span
-      >
-      <!-- <q-btn @click="prev" flat label="Prev" />
-      <q-btn @click="next" flat label="Next" />
-      <q-btn @click="prevTemplate" flat label="Prev Template" />
-      <q-btn @click="nextTemplate" flat label="Next Template" /> -->
-    </q-toolbar>
     <div class="q-mt-lg q-ml-lg q-mr-lg">
       <q-card flat class="q-mb-md mw-600" v-if="currentExample">
         <q-card-section>
