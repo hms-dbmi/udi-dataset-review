@@ -180,6 +180,85 @@ const validSpec = computed(() => {
 const spec = computed(() => {
   return JSON.parse(currentExample.value?.spec ?? '');
 });
+
+const reviewerComment = ref<string>('');
+
+interface DataIssue {
+  present: boolean;
+  name: string;
+  description: string;
+}
+
+const possibleDataIssues = ref<DataIssue[]>([
+  {
+    present: false,
+    name: 'Bad Question',
+    description: 'The question does not make sense.',
+  },
+  {
+    present: false,
+    name: 'Error Message',
+    description:
+      'An error message is displayed where there should be a visualization.',
+  },
+  {
+    present: false,
+    name: 'Malformed Visualization',
+    description: 'The visualization is blank or malformed.',
+  },
+  {
+    present: false,
+    name: 'Question Not Asnwered',
+    description:
+      'It is impossible to answer the question posed with the visualization.',
+  },
+  {
+    present: false,
+    name: 'Suboptimal Visualization',
+    description:
+      'It is possible to answer the question, but would have been easier with another visualization. (Please describe in comments)',
+  },
+  {
+    present: false,
+    name: 'Other',
+    description: 'Something else is wrong. (Please describe in comments.)',
+  },
+]);
+
+const feedbackStatus = ref<'good' | 'bad' | null>(null);
+
+function setFeedbackStatus(status: 'good' | 'bad') {
+  setTimeout(() => {
+    // purely for aesthetics, so ripple animation appears to fill in button
+    feedbackStatus.value = status;
+  }, 160);
+}
+
+function resetFeedbackStatus() {
+  feedbackStatus.value = null;
+}
+
+const showNavigation = computed(() => trainingStore.leftDrawerOpen);
+
+function submitFeedback() {
+  // TODO: store feedback in sqlite
+
+  // clear feedback
+  resetFeedbackStatus();
+  for (const issue of possibleDataIssues.value) {
+    issue.present = false;
+  }
+  reviewerComment.value = '';
+  // TODO: pick new random data point
+  currentIndex.value.template = Math.floor(
+    Math.random() * (numberOfTemplates.value - 1),
+  );
+  currentIndex.value.expanded = Math.floor(
+    Math.random() * (numberOfExpanded.value - 1),
+  );
+  currentIndex.value.paraphrased = 0; // TODO: actually sample this, async dumbness...
+  fetchCurrentExampleTrainingData();
+}
 </script>
 <template>
   <q-drawer v-model="trainingStore.leftDrawerOpen" bordered :width="400">
@@ -289,7 +368,7 @@ const spec = computed(() => {
     </q-list>
   </q-drawer>
   <q-page class="column items-center justify-start q-ma-sm">
-    <div class="q-mt-none q-ml-lg q-mr-lg full-width">
+    <div v-if="showNavigation" class="q-mt-none q-ml-lg q-mr-lg full-width">
       <q-card flat class="q-mb-md" v-if="currentExample">
         <q-card-section class="q-pa-sm q-pt-none">
           <div class="text-h6">
@@ -400,13 +479,81 @@ const spec = computed(() => {
         </q-card-section>
       </q-card>
     </div>
-    <div class="q-mt-lg q-ml-lg q-mr-lg">
-      <template v-if="currentExample">
-        <p class="text-h5">
-          {{ currentExample.query }}
-        </p>
-        <UDIVis v-if="validSpec" :spec="spec"></UDIVis>
-      </template>
+    <div class="full-width row">
+      <div class="q-pa-md q-ml-md q-mr-md mw-600">
+        <template v-if="currentExample">
+          <p class="text-h5">
+            {{ currentExample.query }}
+          </p>
+          <UDIVis v-if="validSpec" :spec="spec"></UDIVis>
+        </template>
+      </div>
+      <q-card flat class="q-mb-md mw-400" v-if="currentExample">
+        <q-card-section class="row">
+          <q-btn
+            no-caps
+            size="xl"
+            color="positive"
+            label="Looks Good!"
+            :outline="feedbackStatus !== 'good'"
+            :ripple="{ color: 'green' }"
+            class="chonk-button"
+            @click="setFeedbackStatus('good')"
+          ></q-btn>
+          <q-space></q-space>
+          <q-btn
+            no-caps
+            size="xl"
+            color="negative"
+            :ripple="{ color: 'red' }"
+            class="chonk-button"
+            label="Something's Wrong"
+            :outline="feedbackStatus !== 'bad'"
+            @click="setFeedbackStatus('bad')"
+          ></q-btn>
+        </q-card-section>
+        <template v-if="feedbackStatus === 'bad'">
+          <q-list>
+            <q-item
+              v-for="issue in possibleDataIssues"
+              :key="issue.name"
+              tag="label"
+              v-ripple
+            >
+              <q-item-section side top>
+                <q-checkbox v-model="issue.present" />
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label>{{ issue.name }}</q-item-label>
+                <q-item-label caption>
+                  {{ issue.description }}
+                </q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+          <q-card-section>
+            <q-input
+              v-model="reviewerComment"
+              autogrow
+              filled
+              label="Comments"
+            ></q-input>
+          </q-card-section>
+        </template>
+        <q-card-section>
+          <q-btn
+            no-caps
+            size="lg"
+            class="full-width"
+            color="primary"
+            style="height: 90px"
+            label="Submit and Get New Question"
+            :disable="feedbackStatus === null"
+            @click="submitFeedback"
+          ></q-btn>
+        </q-card-section>
+      </q-card>
     </div>
   </q-page>
 </template>
@@ -414,5 +561,18 @@ const spec = computed(() => {
 <style lang="scss">
 .jv-code {
   padding: 0 !important;
+}
+
+.chonk-button {
+  height: 180px;
+  width: 180px;
+}
+
+.mw-400 {
+  max-width: 400px;
+  width: 400px;
+}
+.mw-600 {
+  max-width: 600px;
 }
 </style>
