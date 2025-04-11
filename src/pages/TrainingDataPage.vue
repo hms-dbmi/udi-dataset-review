@@ -183,13 +183,27 @@ const spec = computed(() => {
 
 const reviewerComment = ref<string>('');
 
-interface DataIssue {
+interface FeedbackCategory {
   present: boolean;
   name: string;
   description: string;
 }
 
-const possibleDataIssues = ref<DataIssue[]>([
+const possibleImprovements = ref<FeedbackCategory[]>([
+  {
+    present: false,
+    name: 'Suboptimal Visualization',
+    description:
+      'It is possible to answer the question, but would have been easier with another visualization. (Please describe in comments)',
+  },
+  {
+    present: false,
+    name: 'Other',
+    description: 'Something else is wrong. (Please describe in comments.)',
+  },
+]);
+
+const possibleFeedbackCategories = ref<FeedbackCategory[]>([
   {
     present: false,
     name: 'Bad Question',
@@ -214,20 +228,14 @@ const possibleDataIssues = ref<DataIssue[]>([
   },
   {
     present: false,
-    name: 'Suboptimal Visualization',
-    description:
-      'It is possible to answer the question, but would have been easier with another visualization. (Please describe in comments)',
-  },
-  {
-    present: false,
     name: 'Other',
     description: 'Something else is wrong. (Please describe in comments.)',
   },
 ]);
 
-const feedbackStatus = ref<'good' | 'bad' | null>(null);
+const feedbackStatus = ref<'good' | 'bad' | 'improve' | null>(null);
 
-function setFeedbackStatus(status: 'good' | 'bad') {
+function setFeedbackStatus(status: 'good' | 'bad' | 'improve') {
   setTimeout(() => {
     // purely for aesthetics, so ripple animation appears to fill in button
     feedbackStatus.value = status;
@@ -245,8 +253,11 @@ function submitFeedback() {
 
   // clear feedback
   resetFeedbackStatus();
-  for (const issue of possibleDataIssues.value) {
+  for (const issue of possibleFeedbackCategories.value) {
     issue.present = false;
+  }
+  for (const improvement of possibleImprovements.value) {
+    improvement.present = false;
   }
   reviewerComment.value = '';
   // TODO: pick new random data point
@@ -488,7 +499,7 @@ function submitFeedback() {
           <UDIVis v-if="validSpec" :spec="spec"></UDIVis>
         </template>
       </div>
-      <q-card flat class="q-mb-md mw-400" v-if="currentExample">
+      <q-card flat class="q-mb-md mw-585" v-if="currentExample">
         <q-card-section class="row">
           <q-btn
             no-caps
@@ -504,6 +515,17 @@ function submitFeedback() {
           <q-btn
             no-caps
             size="xl"
+            color="warning"
+            label="Could Be Better"
+            :outline="feedbackStatus !== 'improve'"
+            :ripple="{ color: 'orange' }"
+            class="chonk-button"
+            @click="setFeedbackStatus('improve')"
+          ></q-btn>
+          <q-space></q-space>
+          <q-btn
+            no-caps
+            size="xl"
             color="negative"
             :ripple="{ color: 'red' }"
             class="chonk-button"
@@ -512,10 +534,39 @@ function submitFeedback() {
             @click="setFeedbackStatus('bad')"
           ></q-btn>
         </q-card-section>
+        <template v-if="feedbackStatus === 'improve'">
+          <q-list>
+            <q-item
+              v-for="improvement in possibleImprovements"
+              :key="improvement.name"
+              tag="label"
+              v-ripple
+            >
+              <q-item-section side top>
+                <q-checkbox v-model="improvement.present" />
+              </q-item-section>
+
+              <q-item-section>
+                <q-item-label>{{ improvement.name }}</q-item-label>
+                <q-item-label caption>
+                  {{ improvement.description }}
+                </q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+          <q-card-section>
+            <q-input
+              v-model="reviewerComment"
+              autogrow
+              filled
+              label="Comments"
+            ></q-input>
+          </q-card-section>
+        </template>
         <template v-if="feedbackStatus === 'bad'">
           <q-list>
             <q-item
-              v-for="issue in possibleDataIssues"
+              v-for="issue in possibleFeedbackCategories"
               :key="issue.name"
               tag="label"
               v-ripple
@@ -568,9 +619,9 @@ function submitFeedback() {
   width: 180px;
 }
 
-.mw-400 {
-  max-width: 400px;
-  width: 400px;
+.mw-585 {
+  max-width: 585px;
+  width: 585px;
 }
 .mw-600 {
   max-width: 600px;
