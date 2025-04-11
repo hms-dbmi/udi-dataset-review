@@ -87,17 +87,17 @@ function fetchExampleTrainingData(
   });
 }
 
-function fetchCurrentExampleParaphrasedCount() {
+async function fetchCurrentExampleParaphrasedCount() {
   const { template, expanded } = currentIndex.value;
-  fetchParaphrasedCounts(template, expanded);
+  await fetchParaphrasedCounts(template, expanded);
 }
 
-function fetchParaphrasedCounts(templateId: number, expandedId: number) {
-  window?.electron
-    .fetchParaphrasedCounts(templateId, expandedId)
-    .then((data) => {
-      numberOfParaphrased.value = data[0].count;
-    });
+async function fetchParaphrasedCounts(templateId: number, expandedId: number) {
+  const data = await window?.electron.fetchParaphrasedCounts(
+    templateId,
+    expandedId,
+  );
+  numberOfParaphrased.value = data[0].count;
 }
 
 const currentExample = ref<TrainingData | null>(null);
@@ -248,7 +248,7 @@ function resetFeedbackStatus() {
 
 const showNavigation = computed(() => trainingStore.leftDrawerOpen);
 
-function submitFeedback() {
+async function submitFeedback() {
   // TODO: store feedback in sqlite
 
   // clear feedback
@@ -260,14 +260,17 @@ function submitFeedback() {
     improvement.present = false;
   }
   reviewerComment.value = '';
-  // TODO: pick new random data point
   currentIndex.value.template = Math.floor(
     Math.random() * (numberOfTemplates.value - 1),
   );
   currentIndex.value.expanded = Math.floor(
     Math.random() * (numberOfExpanded.value - 1),
   );
-  currentIndex.value.paraphrased = 0; // TODO: actually sample this, async dumbness...
+  await fetchCurrentExampleParaphrasedCount();
+
+  currentIndex.value.paraphrased = Math.floor(
+    Math.random() * (numberOfParaphrased.value - 1),
+  );
   fetchCurrentExampleTrainingData();
 }
 </script>
