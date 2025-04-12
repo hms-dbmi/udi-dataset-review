@@ -12,7 +12,13 @@
           @click="trainingStore.toggleDrawer"
         />
         <q-tabs shrink inline-label dense>
-          <q-route-tab no-caps to="/" label="UDI Data Review" icon="verified" />
+          <q-route-tab no-caps to="/" label="UDI Data Review" icon="grading" />
+          <q-route-tab
+            no-caps
+            to="/ResultsReview"
+            label="Submitted"
+            icon="verified"
+          />
         </q-tabs>
       </q-toolbar>
     </q-header>
