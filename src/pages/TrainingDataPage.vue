@@ -131,6 +131,7 @@ onMounted(() => {
 
   fetchCurrentExampleTrainingData();
   fetchCurrentExampleParaphrasedCount();
+  window?.electron.createReviews();
 });
 
 export interface TrainingData {
@@ -222,7 +223,7 @@ const possibleFeedbackCategories = ref<FeedbackCategory[]>([
   },
   {
     present: false,
-    name: 'Question Not Asnwered',
+    name: 'Question Not Answered',
     description:
       'It is impossible to answer the question posed with the visualization.',
   },
@@ -232,6 +233,23 @@ const possibleFeedbackCategories = ref<FeedbackCategory[]>([
     description: 'Something else is wrong. (Please describe in comments.)',
   },
 ]);
+
+const feedbackCategories = computed<string[]>(() => {
+  if (!currentExample.value) return [];
+  if (feedbackStatus.value === null) return [];
+  if (feedbackStatus.value === 'good') return [];
+  if (feedbackStatus.value === 'improve') {
+    return possibleImprovements.value
+      .filter((improvement) => improvement.present)
+      .map((issue) => issue.name);
+  }
+  if (feedbackStatus.value === 'bad') {
+    return possibleFeedbackCategories.value
+      .filter((issue) => issue.present)
+      .map((issue) => issue.name);
+  }
+  return [];
+});
 
 const feedbackStatus = ref<'good' | 'bad' | 'improve' | null>(null);
 
@@ -249,7 +267,37 @@ function resetFeedbackStatus() {
 const showNavigation = computed(() => trainingStore.leftDrawerOpen);
 
 async function submitFeedback() {
-  // TODO: store feedback in sqlite
+  const current = currentExample.value;
+  if (!current) {
+    return;
+  }
+  const status = feedbackStatus.value;
+  if (!status) {
+    return;
+  }
+  window?.electron.addReview({
+    data_id: current.id,
+    combined_id: current.combined_id,
+    template_id: current.template_id,
+    expanded_id: current.expanded_id,
+    paraphrased_id: current.paraphrased_id,
+    query_template: current.query_template,
+    constraints: current.constraints,
+    spec_template: current.spec_template,
+    query_type: current.query_type,
+    creation_method: current.creation_method,
+    query_base: current.query_base,
+    spec: current.spec,
+    solution: current.solution,
+    dataset_schema: current.dataset_schema,
+    query: current.query,
+    expertise: current.expertise,
+    formality: current.formality,
+    review_status: status,
+    reviewer: 'Devin', // TODO: either get from user, or assign on initial load
+    review_comments: reviewerComment.value,
+    review_categories: feedbackCategories.value,
+  });
 
   // clear feedback
   resetFeedbackStatus();

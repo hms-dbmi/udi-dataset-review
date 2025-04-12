@@ -37,6 +37,9 @@ import type {
 } from 'src/pages/TrainingDataPage.vue';
 // Expose a safe API to the renderer process
 contextBridge.exposeInMainWorld('electron', {
+  createReviews: () => ipcRenderer.invoke('create-reviews'),
+  addReview: (review: Review) => ipcRenderer.invoke('add-review', review),
+  fetchAllReviews: () => ipcRenderer.invoke('fetch-all-reviews'),
   fetchRowCount: () => ipcRenderer.invoke('fetch-row-count'),
   fetchRowData: (combinedId: string) =>
     ipcRenderer.invoke('fetch-row-data', combinedId),
@@ -48,6 +51,9 @@ contextBridge.exposeInMainWorld('electron', {
 declare global {
   interface Window {
     electron: {
+      createReviews: () => Promise<void>;
+      addReview: (review: Review) => Promise<void>;
+      fetchAllReviews: () => Promise<Review[]>;
       fetchRowCount: () => Promise<[RowCount]>;
       fetchRowData: (combinedId: string) => Promise<TrainingData>;
       fetchExpandedCounts: () => Promise<ExpandedCount[]>;
@@ -60,4 +66,28 @@ declare global {
       };
     };
   }
+}
+
+export interface Review {
+  data_id: number;
+  combined_id: string;
+  template_id: number;
+  expanded_id: number;
+  paraphrased_id: number;
+  query_template: string;
+  constraints: string;
+  spec_template: string;
+  query_type: string;
+  creation_method: string;
+  query_base: string;
+  spec: string;
+  solution: string;
+  dataset_schema: string;
+  query: string;
+  expertise: number;
+  formality: number;
+  review_status: string;
+  reviewer: string;
+  review_comments: string;
+  review_categories: string[];
 }
