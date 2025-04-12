@@ -124,6 +124,33 @@ function handleDatabaseQuery(
   });
 }
 
+function handleTransaction(
+  name: string,
+  transaction: (db: sqlite3.Database, ...args: unknown[]) => Promise<unknown>,
+) {
+  ipcMain.handle(name, async (_event, ...args) => {
+    if (!db) {
+      console.error(`Database not connected after call to ${name}`);
+      return null;
+    }
+
+    try {
+      await execAsync(db, 'BEGIN TRANSACTION');
+      const result = await transaction(db, ...args);
+      await execAsync(db, 'COMMIT');
+      return result;
+    } catch (err) {
+      await execAsync(db, 'ROLLBACK');
+      console.error(err);
+      if (err instanceof Error) {
+        throw new Error(`Error in ${name}: ${err.message}`);
+      } else {
+        throw new Error(`Unknown error in ${name}`);
+      }
+    }
+  });
+}
+
 handleDatabaseQuery(
   'fetch-row-count',
   'all',
@@ -190,50 +217,32 @@ handleDatabaseQuery(
   `,
 );
 
-ipcMain.handle('add-review', async (_event, reviewData) => {
-  if (!db) {
-    console.error(`Database not connected`);
-    return null;
+handleTransaction('add-review', async (db, ...args: unknown[]) => {
+  const reviewData = args[0] as Record<string, unknown>;
+  const insertReviewSQL = `
+    INSERT INTO reviews (
+      ${reviewColumns.map(([name]) => name).join(', ')}
+    ) VALUES (
+      ${reviewColumns.map(() => '?').join(', ')}
+    )`;
+
+  const reviewValues = reviewColumns.map(([name]) => reviewData[name]);
+  const result = await runAsync(db, insertReviewSQL, reviewValues);
+  const reviewId = result.lastID;
+
+  const categories = reviewData.review_categories as string[];
+  if (categories.length > 0) {
+    const placeholders = categories.map(() => `(?, ?)`).join(', ');
+    const categoryValues = categories.flatMap((c) => [reviewId, c]);
+
+    const insertCategoriesSQL = `
+      INSERT INTO review_categories (review_id, category)
+      VALUES ${placeholders}`;
+
+    await runAsync(db, insertCategoriesSQL, categoryValues);
   }
 
-  try {
-    await execAsync(db, 'BEGIN TRANSACTION');
-
-    const insertReviewSQL = `
-      INSERT INTO reviews (
-        ${reviewColumns.map(([name]) => name).join(', ')}
-      ) VALUES (
-        ${reviewColumns.map(() => '?').join(', ')}
-      )`;
-
-    const reviewValues = reviewColumns.map(([name]) => reviewData[name]);
-
-    const result = await runAsync(db, insertReviewSQL, reviewValues);
-    const reviewId = result.lastID;
-
-    const categories = reviewData.review_categories as string[];
-    if (categories.length > 0) {
-      const placeholders = categories.map(() => `(?, ?)`).join(', ');
-      const categoryValues = categories.flatMap((c) => [reviewId, c]);
-
-      const insertCategoriesSQL = `
-        INSERT INTO review_categories (review_id, category)
-        VALUES ${placeholders}`;
-
-      await runAsync(db, insertCategoriesSQL, categoryValues);
-    }
-
-    await execAsync(db, 'COMMIT');
-    return reviewId;
-  } catch (err) {
-    await execAsync(db, 'ROLLBACK');
-    console.error(err);
-    if (err instanceof Error) {
-      throw new Error(`Failed to add review: ${err.message}`);
-    } else {
-      throw new Error('Failed to add review due to an unknown error');
-    }
-  }
+  return reviewId;
 });
 
 handleDatabaseQuery('fetch-all-reviews', 'all', 'SELECT * FROM reviews');
