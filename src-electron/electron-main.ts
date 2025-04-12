@@ -89,7 +89,7 @@ function execAsync(db: sqlite3.Database, sql: string): Promise<void> {
   });
 }
 
-function handleDatabaseQuery(
+function handleSimpleAction(
   name: string,
   method: 'get' | 'all' | 'exec' | 'run',
   query: string | ((...args: unknown[]) => string),
@@ -151,26 +151,26 @@ function handleTransaction(
   });
 }
 
-handleDatabaseQuery(
+handleSimpleAction(
   'fetch-row-count',
   'all',
   'SELECT COUNT(*) AS count FROM data',
 );
 
-handleDatabaseQuery(
+handleSimpleAction(
   'fetch-row-data',
   'get',
   'SELECT * FROM data WHERE combined_id = ?',
   (id) => [id],
 );
 
-handleDatabaseQuery(
+handleSimpleAction(
   'fetch-expanded-counts',
   'all',
   'SELECT template_id, COUNT(DISTINCT expanded_id) AS count FROM data GROUP BY template_id',
 );
 
-handleDatabaseQuery(
+handleSimpleAction(
   'fetch-paraphrased-counts',
   'all',
   'SELECT template_id, expanded_id, COUNT(paraphrased_id) AS count FROM data WHERE template_id = ? AND expanded_id = ?',
@@ -200,7 +200,7 @@ const reviewColumns = [
   ['review_comments', 'TEXT'],
 ] as const;
 
-handleDatabaseQuery(
+handleSimpleAction(
   'create-reviews',
   'exec',
   `
@@ -245,7 +245,7 @@ handleTransaction('add-review', async (db, ...args: unknown[]) => {
   return reviewId;
 });
 
-handleDatabaseQuery('fetch-all-reviews', 'all', 'SELECT * FROM reviews');
+handleSimpleAction('fetch-all-reviews', 'all', 'SELECT * FROM reviews');
 
 void app.whenReady().then(() => {
   createWindow();
