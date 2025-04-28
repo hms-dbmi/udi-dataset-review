@@ -5485,10 +5485,10 @@ typescript@~5.5.3:
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.5.4.tgz"
   integrity sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==
 
-udi-toolkit@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/udi-toolkit/-/udi-toolkit-0.0.8.tgz#182152e7323b7ca344efcc149bb2affcc4455ace"
-  integrity sha512-JhMNSbOQ4OWUW1aEiYqnrS6ra4fEbRhmMcEfFQlZwJ52wG0nBMQbDKtuHwJvnLB25sqGKesPMvdHeOmnAfELdA==
+udi-toolkit@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/udi-toolkit/-/udi-toolkit-0.0.9.tgz#d79fdc1fc883560a9072d40dbdb910867cc4eb07"
+  integrity sha512-o3jMOzi5iaeFTMDdJUPnoY9xXYwuVcVxWCbYpDEs9weXkqVj+g7DcmyiRDFRkn9IoindjOknNA2JV38lAoVwSQ==
   dependencies:
     arquero "^8.0.1"
     fast-kde "^0.2.2"
