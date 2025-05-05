@@ -4,6 +4,7 @@ import os from 'os';
 import { fileURLToPath } from 'url';
 import sqlite3 from 'sqlite3';
 import { ipcMain } from 'electron';
+import { v4 as uuidv4 } from 'uuid';
 
 // needed in case process is undefined under Linux
 const platform = process.platform || os.platform();
@@ -215,6 +216,26 @@ handleSimpleAction(
     category TEXT
   );
   `,
+);
+
+handleSimpleAction(
+  'create-user',
+  'exec',
+  `
+  CREATE TABLE IF NOT EXISTS user (
+    field TEXT UNIQUE,
+    value TEXT
+  );
+
+  INSERT OR IGNORE INTO user (field, value)
+  VALUES ('uid', '${uuidv4()}');
+  `,
+);
+
+handleSimpleAction(
+  'fetch-user',
+  'get',
+  'SELECT value FROM user WHERE field = "uid"',
 );
 
 handleTransaction('add-review', async (db, ...args: unknown[]) => {

@@ -34,10 +34,13 @@ import type {
   ParaphrasedCount,
   RowCount,
   TrainingData,
+  UserQuery,
 } from 'src/pages/TrainingDataPage.vue';
 // Expose a safe API to the renderer process
 contextBridge.exposeInMainWorld('electron', {
   createReviews: () => ipcRenderer.invoke('create-reviews'),
+  createUser: () => ipcRenderer.invoke('create-user'),
+  fetchUser: () => ipcRenderer.invoke('fetch-user'),
   addReview: (review: Review) => ipcRenderer.invoke('add-review', review),
   fetchAllReviews: () => ipcRenderer.invoke('fetch-all-reviews'),
   fetchRowCount: () => ipcRenderer.invoke('fetch-row-count'),
@@ -52,6 +55,8 @@ declare global {
   interface Window {
     electron: {
       createReviews: () => Promise<void>;
+      createUser: () => Promise<void>;
+      fetchUser: () => Promise<UserQuery>;
       addReview: (review: Review) => Promise<void>;
       fetchAllReviews: () => Promise<Review[]>;
       fetchRowCount: () => Promise<[RowCount]>;

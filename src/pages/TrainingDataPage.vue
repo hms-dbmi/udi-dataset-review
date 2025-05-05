@@ -133,12 +133,21 @@ onMounted(async () => {
     numberOfExamples.value = data[0].count;
   });
 
+  window?.electron.createReviews();
+  window?.electron.createUser();
   expandedCounts.value = await window?.electron.fetchExpandedCounts();
   await selectRandomIndex();
   fetchCurrentExampleTrainingData();
   fetchCurrentExampleParaphrasedCount();
-  window?.electron.createReviews();
+  const fetchedUser = await window?.electron.fetchUser();
+  user.value = fetchedUser.value;
 });
+
+export interface UserQuery {
+  value: string; // should be the unique UID of the user
+}
+
+const user = ref<string>('unknown');
 
 export interface TrainingData {
   id: number;
@@ -282,7 +291,7 @@ async function submitFeedback() {
     expertise: current.expertise,
     formality: current.formality,
     review_status: status,
-    reviewer: 'Devin', // TODO: either get from user, or assign on initial load
+    reviewer: user.value,
     review_comments: reviewerComment.value,
     review_categories: feedbackCategories.value,
   });
