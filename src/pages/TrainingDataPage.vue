@@ -281,6 +281,8 @@ async function submitFeedback() {
     review_categories: feedbackCategories.value,
   });
 
+  trainingStore.reviewCount += 1;
+
   // clear feedback
   resetFeedbackStatus();
   for (const issue of possibleFeedbackCategories.value) {

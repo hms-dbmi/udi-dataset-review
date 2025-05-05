@@ -245,7 +245,19 @@ handleTransaction('add-review', async (db, ...args: unknown[]) => {
   return reviewId;
 });
 
-handleSimpleAction('fetch-all-reviews', 'all', 'SELECT * FROM reviews');
+handleSimpleAction(
+  'fetch-all-reviews',
+  'all',
+  `SELECT
+    r.*,
+    JSON_GROUP_ARRAY(rc.category) AS review_categories
+FROM
+    reviews r
+LEFT JOIN
+    review_categories rc ON r.id = rc.review_id
+GROUP BY
+    r.id;`,
+);
 
 void app.whenReady().then(() => {
   createWindow();
