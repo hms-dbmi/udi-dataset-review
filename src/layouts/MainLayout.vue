@@ -2,6 +2,9 @@
 import { computed } from 'vue';
 import { useTrainingStore } from 'src/stores/TrainingStore';
 const trainingStore = useTrainingStore();
+
+const adminMode = false;
+
 const completedMessages = computed(() => {
   if (trainingStore.reviewCount === 1) {
     return `You have completed ${trainingStore.reviewCount} review.`;
@@ -40,6 +43,7 @@ const encourageMessage = computed(() => {
     <q-header elevated>
       <q-toolbar class="bg-white text-primary">
         <q-btn
+          v-if="adminMode"
           flat
           dense
           round
@@ -48,7 +52,7 @@ const encourageMessage = computed(() => {
           class="q-mr-md"
           @click="trainingStore.toggleDrawer"
         />
-        <q-tabs shrink inline-label dense>
+        <q-tabs v-if="adminMode" shrink inline-label dense>
           <q-route-tab no-caps to="/" label="UDI Data Review" icon="grading" />
           <q-route-tab
             no-caps
