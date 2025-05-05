@@ -522,7 +522,7 @@ async function submitFeedback() {
         </q-card-section>
       </q-card>
     </div>
-    <div class="full-width row">
+    <div class="full-width row justify-between">
       <div class="q-pa-md q-ml-md q-mr-md mw-600">
         <template v-if="currentExample">
           <p class="text-h5">
