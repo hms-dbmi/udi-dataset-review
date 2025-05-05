@@ -190,20 +190,6 @@ interface FeedbackCategory {
   description: string;
 }
 
-const possibleImprovements = ref<FeedbackCategory[]>([
-  {
-    present: false,
-    name: 'Suboptimal Visualization',
-    description:
-      'It is possible to answer the question, but would have been easier with another visualization. (Please describe in comments)',
-  },
-  {
-    present: false,
-    name: 'Other',
-    description: 'Something else is wrong. (Please describe in comments.)',
-  },
-]);
-
 const possibleFeedbackCategories = ref<FeedbackCategory[]>([
   {
     present: false,
@@ -238,11 +224,7 @@ const feedbackCategories = computed<string[]>(() => {
   if (!currentExample.value) return [];
   if (feedbackStatus.value === null) return [];
   if (feedbackStatus.value === 'good') return [];
-  if (feedbackStatus.value === 'improve') {
-    return possibleImprovements.value
-      .filter((improvement) => improvement.present)
-      .map((issue) => issue.name);
-  }
+  if (feedbackStatus.value === 'improve') return [];
   if (feedbackStatus.value === 'bad') {
     return possibleFeedbackCategories.value
       .filter((issue) => issue.present)
@@ -303,9 +285,6 @@ async function submitFeedback() {
   resetFeedbackStatus();
   for (const issue of possibleFeedbackCategories.value) {
     issue.present = false;
-  }
-  for (const improvement of possibleImprovements.value) {
-    improvement.present = false;
   }
   reviewerComment.value = '';
   currentIndex.value.template = Math.floor(
@@ -586,25 +565,10 @@ async function submitFeedback() {
           ></q-btn>
         </q-card-section>
         <template v-if="feedbackStatus === 'improve'">
-          <q-list>
-            <q-item
-              v-for="improvement in possibleImprovements"
-              :key="improvement.name"
-              tag="label"
-              v-ripple
-            >
-              <q-item-section side top>
-                <q-checkbox v-model="improvement.present" />
-              </q-item-section>
-
-              <q-item-section>
-                <q-item-label>{{ improvement.name }}</q-item-label>
-                <q-item-label caption>
-                  {{ improvement.description }}
-                </q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
+          <q-card-section>
+            Please provide a short description of how the visualization could be
+            improved.
+          </q-card-section>
           <q-card-section>
             <q-input
               v-model="reviewerComment"
