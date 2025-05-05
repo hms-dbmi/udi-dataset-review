@@ -81,10 +81,18 @@ function fetchExampleTrainingData(
   expandedId: number,
   paraphrasedId: number,
 ) {
-  const combinedId = `${templateId}_${expandedId}_${paraphrasedId}`;
+  const combinedId = getCombinedId(templateId, expandedId, paraphrasedId);
   window?.electron.fetchRowData(combinedId).then((data) => {
     currentExample.value = data;
   });
+}
+
+function getCombinedId(
+  templateId: number,
+  expandedId: number,
+  paraphrasedId: number,
+) {
+  return `${templateId}_${expandedId}_${paraphrasedId}`;
 }
 
 async function fetchCurrentExampleParaphrasedCount() {
@@ -120,15 +128,13 @@ const numberOfParaphrased = ref<number>(0);
 
 const expandedCounts = ref<ExpandedCount[]>([]);
 
-onMounted(() => {
+onMounted(async () => {
   window?.electron.fetchRowCount().then((data) => {
     numberOfExamples.value = data[0].count;
   });
 
-  window?.electron.fetchExpandedCounts().then((data) => {
-    expandedCounts.value = data;
-  });
-
+  expandedCounts.value = await window?.electron.fetchExpandedCounts();
+  await selectRandomIndex();
   fetchCurrentExampleTrainingData();
   fetchCurrentExampleParaphrasedCount();
   window?.electron.createReviews();
@@ -289,18 +295,35 @@ async function submitFeedback() {
     issue.present = false;
   }
   reviewerComment.value = '';
-  currentIndex.value.template = Math.floor(
-    Math.random() * (numberOfTemplates.value - 1),
-  );
-  currentIndex.value.expanded = Math.floor(
-    Math.random() * (numberOfExpanded.value - 1),
-  );
-  await fetchCurrentExampleParaphrasedCount();
-
-  currentIndex.value.paraphrased = Math.floor(
-    Math.random() * (numberOfParaphrased.value - 1),
-  );
+  await selectRandomIndex();
   fetchCurrentExampleTrainingData();
+}
+
+async function selectRandomIndex() {
+  const completedReviews = new Set(
+    (await trainingStore.fetchAllReviews()).map((review) => review.combined_id),
+  );
+  do {
+    currentIndex.value.template = Math.floor(
+      Math.random() * (numberOfTemplates.value - 1),
+    );
+    currentIndex.value.expanded = Math.floor(
+      Math.random() * (numberOfExpanded.value - 1),
+    );
+    await fetchCurrentExampleParaphrasedCount();
+
+    currentIndex.value.paraphrased = Math.floor(
+      Math.random() * (numberOfParaphrased.value - 1),
+    );
+  } while (
+    completedReviews.has(
+      getCombinedId(
+        currentIndex.value.template,
+        currentIndex.value.expanded,
+        currentIndex.value.paraphrased,
+      ),
+    )
+  );
 }
 </script>
 <template>
@@ -529,6 +552,9 @@ async function submitFeedback() {
             {{ currentExample.query }}
           </p>
           <UDIVis v-if="validSpec" :spec="spec"></UDIVis>
+        </template>
+        <template v-else>
+          <div>Loading...</div>
         </template>
       </div>
       <q-card flat class="q-mb-md mw-585" v-if="currentExample">
