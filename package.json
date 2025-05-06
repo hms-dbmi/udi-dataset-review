@@ -4,6 +4,7 @@
   "description": "Universal Discovery Interface Data Review Tool",
   "author": "dev-lan <devinscottlange@gmail.com>",
   "type": "module",
+  "productName": "UDI Review",
   "private": true,
   "scripts": {
     "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
@@ -27,35 +28,29 @@
     "vue3-json-viewer": "^2.3.0"
   },
   "devDependencies": {
-    "@electron/packager": "^18.3.2",
-    "@eslint/js": "^9.14.0",
-    "@quasar/app-vite": "^2.1.0",
     "@types/lodash": "^4.17.16",
-    "@types/node": "^20.5.9",
     "@types/sqlite3": "^5.1.0",
     "@types/vue3-json-viewer": "^2.2.0",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@electron/packager": "^18.3.2",
+    "@eslint/js": "^9.14.0",
+    "@quasar/app-vite": "^2.1.0",
+    "@types/node": "^20.5.9",
     "@vue/eslint-config-prettier": "^10.1.0",
-    "@vue/eslint-config-typescript": "^14.1.3",
+    "@vue/eslint-config-typescript": "^14.4.0",
     "autoprefixer": "^10.4.2",
-    "electron": "^35.1.3",
+    "electron": "^36.1.0",
     "eslint": "^9.14.0",
     "eslint-plugin-vue": "^9.30.0",
     "globals": "^15.12.0",
     "prettier": "^3.3.3",
-    "ts-json-schema-generator": "^2.3.0",
     "typescript": "~5.5.3",
-    "vite-plugin-checker": "^0.8.0",
+    "vite-plugin-checker": "^0.9.0",
     "vue-tsc": "^2.0.29"
   },
   "engines": {
     "node": "^28 || ^26 || ^24 || ^22 || ^20 || ^18",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
   }
 }
