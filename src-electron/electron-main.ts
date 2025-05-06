@@ -22,8 +22,12 @@ function ensureWritableDatabase() {
 
   return userDb;
 }
-const dbPath = ensureWritableDatabase();
-
+let dbPath: string;
+if (process.env.DEBUGGING) {
+  dbPath = path.join(currentDir, 'database.sqlite');
+} else {
+  dbPath = ensureWritableDatabase();
+}
 let mainWindow: BrowserWindow | undefined;
 
 async function createWindow() {
