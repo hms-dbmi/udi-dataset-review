@@ -37,19 +37,10 @@ export default defineConfig((/* ctx */) => {
         node: 'node20',
       },
 
-      publicPath: '/udi-grammar/',
-
       typescript: {
         strict: true,
         vueShim: true,
-        extendTsConfig(tsConfig) {
-          tsConfig.exclude = [
-            ...(tsConfig.exclude || []), // Keep the existing exclusions if any
-            './../src/components/dist',
-            './../src/components/node_modules',
-            './../src/components/index.ts',
-          ];
-        },
+        // extendTsConfig (tsConfig) {}
       },
 
       vueRouterMode: 'hash', // available values: 'hash', 'history'
@@ -199,12 +190,13 @@ export default defineConfig((/* ctx */) => {
         // protocol: 'myapp://path',
         // Windows only
         // win32metadata: { ... }
+        extraResource: './src-electron/extraResources/database.sqlite',
       },
 
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'quasar-project',
+        appId: 'udi-training-data-review',
       },
     },
 

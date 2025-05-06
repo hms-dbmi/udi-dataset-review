@@ -5,12 +5,24 @@ import { fileURLToPath } from 'url';
 import sqlite3 from 'sqlite3';
 import { ipcMain } from 'electron';
 import { v4 as uuidv4 } from 'uuid';
+import fs from 'fs';
 
 // needed in case process is undefined under Linux
 const platform = process.platform || os.platform();
 
 const currentDir = fileURLToPath(new URL('.', import.meta.url));
-const dbPath = path.join(currentDir, 'data', 'database.sqlite');
+
+function ensureWritableDatabase() {
+  const bundledDb = path.join(process.resourcesPath, 'database.sqlite');
+  const userDb = path.join(app.getPath('userData'), 'database.sqlite');
+
+  if (!fs.existsSync(userDb)) {
+    fs.copyFileSync(bundledDb, userDb);
+  }
+
+  return userDb;
+}
+const dbPath = ensureWritableDatabase();
 
 let mainWindow: BrowserWindow | undefined;
 

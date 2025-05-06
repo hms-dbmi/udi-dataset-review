@@ -8,6 +8,8 @@ node_modules
 /quasar.config.*.temporary.compiled*
 /src/components/dist
 
+/src-electron/extraResources
+
 # Cordova related directories and files
 /src-cordova/node_modules
 /src-cordova/platforms
