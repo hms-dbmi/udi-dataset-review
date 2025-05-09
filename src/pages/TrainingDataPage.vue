@@ -362,7 +362,7 @@ async function selectRandomIndex() {
             <JsonViewer
               v-if="currentExample"
               :value="JSON.parse(currentExample?.constraints ?? '[]')"
-              expand-depth="3"
+              :expand-depth="3"
               theme="light"
             />
           </q-item-label>
@@ -382,7 +382,7 @@ async function selectRandomIndex() {
             <JsonViewer
               v-if="currentExample"
               :value="JSON.parse(currentExample?.solution ?? '{}')"
-              expand-depth="2"
+              :expand-depth="2"
               theme="light"
             />
           </q-item-label>
@@ -420,7 +420,7 @@ async function selectRandomIndex() {
           <q-item-label>
             <JsonViewer
               :value="JSON.parse(currentExample?.spec_template ?? '{}')"
-              expand-depth="4"
+              :expand-depth="4"
               theme="light"
             />
           </q-item-label>
@@ -433,7 +433,7 @@ async function selectRandomIndex() {
           <q-item-label>
             <JsonViewer
               :value="JSON.parse(currentExample?.spec ?? '{}')"
-              expand-depth="4"
+              :expand-depth="4"
               theme="light"
             />
           </q-item-label>
@@ -555,8 +555,9 @@ async function selectRandomIndex() {
       </q-card>
     </div>
     <div class="full-width row justify-between">
-      <div class="q-pa-md q-ml-md q-mr-md mw-600">
+      <div class="q-pa-md q-ml-md q-mr-md mw-800 flex-grow">
         <template v-if="currentExample">
+          <p class="text-h6">Dataset: {{ currentExample.dataset_schema }}</p>
           <p class="text-h5">
             {{ currentExample.query }}
           </p>
@@ -675,7 +676,11 @@ async function selectRandomIndex() {
   max-width: 585px;
   width: 585px;
 }
-.mw-600 {
-  max-width: 600px;
+.mw-800 {
+  max-width: 800px;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 </style>
