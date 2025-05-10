@@ -435,6 +435,7 @@ async function selectRandomIndex() {
               :value="JSON.parse(currentExample?.spec ?? '{}')"
               :expand-depth="4"
               theme="light"
+              copyable
             />
           </q-item-label>
           <q-item-label caption>spec</q-item-label>
