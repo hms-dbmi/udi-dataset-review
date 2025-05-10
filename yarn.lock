@@ -5535,10 +5535,10 @@ typescript@~5.5.3:
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.5.4.tgz"
   integrity sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==
 
-udi-toolkit@^0.0.18:
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/udi-toolkit/-/udi-toolkit-0.0.18.tgz#9b22330e90f3472d674be4a0d6f87f50e2ba7a03"
-  integrity sha512-SnFBU9AqzdtmIjYFmu10+tdnbpD0tDb+2rnr6sbboE6C5P6nIAGiEM/m5sIwnMUp6cBMbry3cYB47QbQn5EfDQ==
+udi-toolkit@^0.0.19:
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/udi-toolkit/-/udi-toolkit-0.0.19.tgz#eb3d736293d04c153e69e47c09d107adc3c5fbe2"
+  integrity sha512-oTwmyz3ueOxJOsjjsnJwvRD+w+dzkR0PSx/6yrXO2UubEA6c0i4EtvJPWhvoLBiaNQtzBR3FLpVAOEjRWi6dlw==
   dependencies:
     "@types/d3-scale" "^4.0.9"
     "@types/d3-scale-chromatic" "^3.1.0"
