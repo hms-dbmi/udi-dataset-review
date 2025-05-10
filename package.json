@@ -22,7 +22,7 @@
     "pinia": "^3.0.1",
     "quasar": "^2.16.0",
     "sqlite3": "^5.1.7",
-    "udi-toolkit": "^0.0.11",
+    "udi-toolkit": "^0.0.18",
     "uuid": "^11.1.0",
     "vue": "^3.4.18",
     "vue-router": "^4.0.12",
