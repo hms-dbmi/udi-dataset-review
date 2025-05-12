@@ -63,6 +63,7 @@ yarn
 ```
 
 3. download the database file and move it to the `.quasar/dev-electron/` folder.
+   https://drive.google.com/file/d/1ledwpgfinldzWHNe6QVaEwvoBeHgikFS/view?usp=drive_link
 
 4. **Run the code editor with Quasar in development mode.**
 
