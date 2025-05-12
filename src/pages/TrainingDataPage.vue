@@ -136,7 +136,7 @@ onMounted(async () => {
   window?.electron.createReviews();
   window?.electron.createUser();
   expandedCounts.value = await window?.electron.fetchExpandedCounts();
-  await selectRandomIndex();
+  await selectNextIndex();
   fetchCurrentExampleTrainingData();
   fetchCurrentExampleParaphrasedCount();
   const fetchedUser = await window?.electron.fetchUser();
@@ -151,6 +151,7 @@ const user = ref<string>('unknown');
 
 export interface TrainingData {
   id: number;
+  original_id: number;
   combined_id: string;
   template_id: number;
   expanded_id: number;
@@ -272,8 +273,9 @@ async function submitFeedback() {
   if (!status) {
     return;
   }
-  window?.electron.addReview({
+  await window?.electron.addReview({
     data_id: current.id,
+    original_id: current.original_id,
     combined_id: current.combined_id,
     template_id: current.template_id,
     expanded_id: current.expanded_id,
@@ -304,14 +306,57 @@ async function submitFeedback() {
     issue.present = false;
   }
   reviewerComment.value = '';
-  await selectRandomIndex();
+  await selectNextIndex();
   fetchCurrentExampleTrainingData();
 }
 
-async function selectRandomIndex() {
+const sharedReviews: {
+  template: number;
+  expanded: number;
+  paraphrased: number;
+}[] = [
+  { template: 10, expanded: 443, paraphrased: 0 },
+  { template: 0, expanded: 39, paraphrased: 0 },
+  { template: 56, expanded: 12, paraphrased: 2 },
+  { template: 32, expanded: 16, paraphrased: 0 },
+  { template: 12, expanded: 1166, paraphrased: 1 },
+  { template: 47, expanded: 305, paraphrased: 0 },
+  { template: 1, expanded: 21, paraphrased: 0 },
+  { template: 55, expanded: 10, paraphrased: 1 },
+  { template: 38, expanded: 31, paraphrased: 1 },
+  { template: 1, expanded: 48, paraphrased: 0 },
+  { template: 4, expanded: 7, paraphrased: 0 },
+  { template: 4, expanded: 5, paraphrased: 0 },
+  { template: 57, expanded: 71, paraphrased: 1 },
+  { template: 30, expanded: 28, paraphrased: 0 },
+  { template: 49, expanded: 1186, paraphrased: 0 },
+  { template: 52, expanded: 736, paraphrased: 0 },
+  { template: 40, expanded: 62, paraphrased: 0 },
+  { template: 30, expanded: 25, paraphrased: 0 },
+  { template: 9, expanded: 174, paraphrased: 0 },
+  { template: 8, expanded: 240, paraphrased: 0 },
+];
+
+async function selectNextIndex() {
   const completedReviews = new Set(
     (await trainingStore.fetchAllReviews()).map((review) => review.combined_id),
   );
+  // first give every person the same first few examples
+  for (const review of sharedReviews) {
+    const combinedId = getCombinedId(
+      review.template,
+      review.expanded,
+      review.paraphrased,
+    );
+    if (!completedReviews.has(combinedId)) {
+      currentIndex.value.template = review.template;
+      currentIndex.value.expanded = review.expanded;
+      currentIndex.value.paraphrased = review.paraphrased;
+      return;
+    }
+  }
+
+  // if they have been answered select a random one
   do {
     currentIndex.value.template = Math.floor(
       Math.random() * (numberOfTemplates.value - 1),
@@ -333,6 +378,8 @@ async function selectRandomIndex() {
       ),
     )
   );
+  console.log('next index');
+  console.log(currentIndex.value);
 }
 </script>
 <template>

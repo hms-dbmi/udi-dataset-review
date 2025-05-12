@@ -36,8 +36,8 @@ async function createWindow() {
    */
   mainWindow = new BrowserWindow({
     icon: path.resolve(currentDir, 'icons/icon.png'), // tray icon
-    width: 1600,
-    height: 1200,
+    width: 2100,
+    height: 1600,
     useContentSize: true,
     webPreferences: {
       contextIsolation: true,
@@ -196,6 +196,7 @@ handleSimpleAction(
 
 const reviewColumns = [
   ['data_id', 'INTEGER REFERENCES data(id)'],
+  ['original_id', 'integer'],
   ['combined_id', 'TEXT UNIQUE'],
   ['template_id', 'INTEGER'],
   ['expanded_id', 'INTEGER'],

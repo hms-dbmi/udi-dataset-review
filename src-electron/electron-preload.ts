@@ -75,6 +75,7 @@ declare global {
 
 export interface Review {
   data_id: number;
+  original_id: number;
   combined_id: string;
   template_id: number;
   expanded_id: number;

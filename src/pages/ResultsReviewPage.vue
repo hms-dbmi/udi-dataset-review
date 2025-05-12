@@ -20,6 +20,7 @@ onMounted(async () => {
         <div>
           <strong>Review Categories:</strong> {{ review.review_categories }}
         </div>
+        <div><strong>Original ID:</strong> {{ review.original_id }}</div>
       </q-card-section>
     </q-card>
   </div>
