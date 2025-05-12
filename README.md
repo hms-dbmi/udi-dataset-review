@@ -17,9 +17,9 @@ After downloading, unzip the folder.
 macOS will complain that the app is from an unidentified developer since I don't have an apple developer key. Run these commands to override this:
 
 ```bash
-`xattr -rd com.apple.quarantine /<path-to-app>/UDI\ Review.app`
+`xattr -rd com.apple.quarantine <path-to-app>/UDI\ Review.app`
 
-`codesign --force --deep --sign - /<path-to-app>/UDI\ Review.app`
+`codesign --force --deep --sign - <path-to-app>/UDI\ Review.app`
 ```
 
 More info:
