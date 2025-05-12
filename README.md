@@ -26,7 +26,7 @@ More info:
 
 https://forums.macrumors.com/threads/unsigned-self-signed-app-permissions.2417038/?post=32874396#post-32874396
 
-If this does not work, the other option is to build this application from source. See build from source.
+If this does not work, the last resort option is to build the application from source. See instructions to build from source at bottom..
 
 ## 2. Review
 
