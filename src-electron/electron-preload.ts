@@ -46,6 +46,8 @@ contextBridge.exposeInMainWorld('electron', {
   fetchRowCount: () => ipcRenderer.invoke('fetch-row-count'),
   fetchRowData: (combinedId: string) =>
     ipcRenderer.invoke('fetch-row-data', combinedId),
+  fetchRowDataFromId: (id: number) =>
+    ipcRenderer.invoke('fetch-row-data-from-id', id),
   fetchExpandedCounts: () => ipcRenderer.invoke('fetch-expanded-counts'),
   fetchParaphrasedCounts: (templateId: number, expandedId: number) =>
     ipcRenderer.invoke('fetch-paraphrased-counts', templateId, expandedId),
@@ -61,6 +63,7 @@ declare global {
       fetchAllReviews: () => Promise<Review[]>;
       fetchRowCount: () => Promise<[RowCount]>;
       fetchRowData: (combinedId: string) => Promise<TrainingData>;
+      fetchRowDataFromId: (id: number) => Promise<TrainingData>;
       fetchExpandedCounts: () => Promise<ExpandedCount[]>;
       fetchParaphrasedCounts: (
         templateId: number,

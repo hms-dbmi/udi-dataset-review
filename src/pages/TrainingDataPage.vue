@@ -87,6 +87,12 @@ function fetchExampleTrainingData(
   });
 }
 
+function fetchExampleTrainingDataFromId(id: number) {
+  window?.electron.fetchRowDataFromId(id).then((data) => {
+    currentExample.value = data;
+  });
+}
+
 function getCombinedId(
   templateId: number,
   expandedId: number,
@@ -381,6 +387,8 @@ async function selectNextIndex() {
   console.log('next index');
   console.log(currentIndex.value);
 }
+
+const lookupModel = ref<number>(0);
 </script>
 <template>
   <q-drawer v-model="trainingStore.leftDrawerOpen" bordered :width="400">
@@ -492,6 +500,15 @@ async function selectNextIndex() {
   </q-drawer>
   <q-page class="column items-center justify-start q-ma-sm">
     <div v-if="showNavigation" class="q-mt-none q-ml-lg q-mr-lg full-width">
+      <div class="row">
+        <q-input type="number" filled v-model.number="lookupModel"></q-input>
+        <q-btn
+          @click="fetchExampleTrainingDataFromId(lookupModel)"
+          label="Go to ID"
+          outline
+          color="primary"
+        />
+      </div>
       <q-card flat class="q-mb-md" v-if="currentExample">
         <q-card-section class="q-pa-sm q-pt-none">
           <div class="text-h6">
@@ -605,6 +622,10 @@ async function selectNextIndex() {
     <div class="full-width row justify-between">
       <div class="q-pa-md q-ml-md q-mr-md mw-800 flex-grow">
         <template v-if="currentExample">
+          <!-- <p class="text-h6">chart: {{ currentExample.chart_type }}</p>
+          <p class="text-h6">
+            complexity: {{ currentExample.chart_complexity }}
+          </p> -->
           <p class="text-h6">Dataset: {{ currentExample.dataset_schema }}</p>
           <p class="text-h5">
             {{ currentExample.query }}
